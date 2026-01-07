@@ -1,3 +1,7 @@
+<script setup>
+const scope = useAbissal();
+</script>
+
 <template>
   <section class="py-24 relative z-10 border-t border-gray-900">
     <div class="container mx-auto px-6 flex flex-col lg:flex-row gap-12">
@@ -193,184 +197,47 @@
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16"
         >
-          <!-- Item 1 -->
-          <div class="group cursor-pointer">
-            <div
-              class="relative aspect-[4/5] overflow-hidden bg-gray-900 mb-4 border border-gray-800 group-hover:border-blood-red transition-colors"
-            >
-              <img
-                src="https://placehold.co/600x800/111111/dddddd?text=ERASERHEAD"
-                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 glitch-hover filter grayscale contrast-125"
-              />
+          <template v-for="p in scope.productPage.data">
+            <div class="group cursor-pointer">
               <div
-                class="absolute top-2 left-2 bg-black text-white text-xs px-2 py-1 font-mono uppercase"
+                class="relative aspect-[4/5] overflow-hidden bg-gray-900 mb-4 border border-gray-800 group-hover:border-blood-red transition-colors"
               >
-                Lynchian Tech
-              </div>
-            </div>
-            <div class="flex justify-between items-start">
-              <div>
-                <h3
-                  class="text-xl font-bold mb-1 group-hover:text-blood-red transition-colors"
+                <img
+                  :src="p.image"
+                  class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 glitch-hover"
+                />
+                <div
+                  class="flex flex-col gap-1 absolute bottom-2 left-2 text-black text-xs font-mono uppercase font-bold"
                 >
-                  In Heaven T-Shirt
-                </h3>
-                <p class="text-xs text-gray-500 uppercase tracking-wider">
-                  Filme / Surrealismo
-                </p>
+                  <template
+                    v-for="flag in scope.taxonomyItems('flags', p.flags)"
+                  >
+                    <div class="bg-blood-red px-2 py-1">{{ flag.name }}</div>
+                  </template>
+                </div>
               </div>
-              <span class="text-lg font-bold text-gray-300">$35</span>
-            </div>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="group cursor-pointer">
-            <div
-              class="relative aspect-[4/5] overflow-hidden bg-gray-900 mb-4 border border-gray-800 group-hover:border-blood-red transition-colors"
-            >
-              <img
-                src="https://placehold.co/600x800/050505/8a0303?text=SUSPIRIA"
-                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 glitch-hover"
-              />
-              <div class="absolute top-2 right-2 flex gap-1">
-                <span class="text-blood-red text-xs">●</span>
-                <span class="text-blood-red text-xs">●</span>
-                <span class="text-blood-red text-xs">●</span>
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3
+                    class="text-xl font-bold mb-1 group-hover:text-blood-red transition-colors"
+                  >
+                    {{ p.name }}
+                  </h3>
+                  <p class="text-xs text-gray-500 uppercase tracking-wider">
+                    Arte / Esotérico
+                  </p>
+                </div>
+                <span class="text-lg font-bold text-gray-300">$45</span>
               </div>
             </div>
-            <div class="flex justify-between items-start">
-              <div>
-                <h3
-                  class="text-xl font-bold mb-1 group-hover:text-blood-red transition-colors"
-                >
-                  Three Mothers Hoodie
-                </h3>
-                <p class="text-xs text-gray-500 uppercase tracking-wider">
-                  Filme / Giallo
-                </p>
-              </div>
-              <span class="text-lg font-bold text-gray-300">$65</span>
-            </div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="group cursor-pointer">
-            <div
-              class="relative aspect-[4/5] overflow-hidden bg-gray-900 mb-4 border border-gray-800 group-hover:border-blood-red transition-colors"
-            >
-              <img
-                src="https://placehold.co/600x800/1a1a1a/cccccc?text=JOY+DIVISION"
-                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 glitch-hover filter grayscale contrast-150"
-              />
-            </div>
-            <div class="flex justify-between items-start">
-              <div>
-                <h3
-                  class="text-xl font-bold mb-1 group-hover:text-blood-red transition-colors"
-                >
-                  Unknown Pleasures Mug
-                </h3>
-                <p class="text-xs text-gray-500 uppercase tracking-wider">
-                  Música / Post-Punk
-                </p>
-              </div>
-              <span class="text-lg font-bold text-gray-300">$20</span>
-            </div>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="group cursor-pointer">
-            <div
-              class="relative aspect-[4/5] overflow-hidden bg-gray-900 mb-4 border border-gray-800 group-hover:border-blood-red transition-colors"
-            >
-              <img
-                src="https://placehold.co/600x800/000000/ffffff?text=JODOROWSKY"
-                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 glitch-hover"
-              />
-              <div
-                class="absolute bottom-2 left-2 bg-blood-red text-black text-xs px-2 py-1 font-mono uppercase font-bold"
-              >
-                Limited
-              </div>
-            </div>
-            <div class="flex justify-between items-start">
-              <div>
-                <h3
-                  class="text-xl font-bold mb-1 group-hover:text-blood-red transition-colors"
-                >
-                  Holy Mountain Print
-                </h3>
-                <p class="text-xs text-gray-500 uppercase tracking-wider">
-                  Arte / Esotérico
-                </p>
-              </div>
-              <span class="text-lg font-bold text-gray-300">$45</span>
-            </div>
-          </div>
-
-          <!-- Item 5 -->
-          <div class="group cursor-pointer">
-            <div
-              class="relative aspect-[4/5] overflow-hidden bg-gray-900 mb-4 border border-gray-800 group-hover:border-blood-red transition-colors"
-            >
-              <img
-                src="https://placehold.co/600x800/0a0a0a/444444?text=BAUHAUS"
-                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 glitch-hover filter grayscale contrast-125"
-              />
-            </div>
-            <div class="flex justify-between items-start">
-              <div>
-                <h3
-                  class="text-xl font-bold mb-1 group-hover:text-blood-red transition-colors"
-                >
-                  Bela Lugosi's Tote
-                </h3>
-                <p class="text-xs text-gray-500 uppercase tracking-wider">
-                  Música / Goth
-                </p>
-              </div>
-              <span class="text-lg font-bold text-gray-300">$25</span>
-            </div>
-          </div>
-
-          <!-- Item 6 -->
-          <div class="group cursor-pointer">
-            <div
-              class="relative aspect-[4/5] overflow-hidden bg-gray-900 mb-4 border border-gray-800 group-hover:border-blood-red transition-colors"
-            >
-              <img
-                src="https://placehold.co/600x800/050505/222222?text=H%C3%A4xan"
-                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 glitch-hover"
-              />
-              <div
-                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl text-white/20"
-              >
-                ⛧
-              </div>
-            </div>
-            <div class="flex justify-between items-start">
-              <div>
-                <h3
-                  class="text-xl font-bold mb-1 group-hover:text-blood-red transition-colors"
-                >
-                  Witchcraft Pillow
-                </h3>
-                <p class="text-xs text-gray-500 uppercase tracking-wider">
-                  Cinema / Silent
-                </p>
-              </div>
-              <span class="text-lg font-bold text-gray-300">$40</span>
-            </div>
-          </div>
+          </template>
         </div>
 
-        <div class="mt-24 text-center">
-          <button
-            class="border border-white px-8 py-3 text-sm hover:bg-white hover:text-black transition-all uppercase tracking-widest"
-          >
-            Load More from the Abyss
-          </button>
-        </div>
+        <abissal-ui-pagination
+          :pages="scope.productPage.pages"
+          v-model:page="scope.productPage.params.page"
+          v-model:limit="scope.productPage.params.limit"
+        />
       </main>
     </div>
   </section>
