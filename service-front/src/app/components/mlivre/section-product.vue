@@ -1,7 +1,7 @@
 <script setup>
 const route = useRoute();
 const router = useRouter();
-const scope = useShopMlivre();
+const scope = useShop("mlivre");
 
 const product = computed(() => {
   if (!route.params.slug) return null;

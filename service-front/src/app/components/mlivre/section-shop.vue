@@ -1,5 +1,5 @@
 <script setup>
-const scope = useShopMlivre();
+const scope = useShop("mlivre");
 
 // Helper to toggle array filters
 const toggleFilter = (array, value) => {

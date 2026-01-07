@@ -20,8 +20,6 @@ useHead({
     class: "bg-[#050505]", // Ensure global background matches void black to avoid flashes
   },
 });
-
-const abissal = useShopAbissal();
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <script setup>
 const route = useRoute();
 const router = useRouter();
-const scope = useShopAbissal();
+const scope = useShop("abissal");
 
 const product = computed(() => {
   if (!route.params.slug) return null;

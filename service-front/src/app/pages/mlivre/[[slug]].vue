@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// Prevent scroll to top when navigating to child routes (product modal)
 definePageMeta({
   scrollToTop: false,
 });
@@ -10,10 +9,13 @@ useHead({
     class: "bg-[#ebebeb] text-[#333]",
   },
 });
+
+const scope = useShop("mlivre");
 </script>
 
 <template>
   <div>
+    <!-- <pre>{{ scope }}</pre> -->
     <mlivre-section-shop />
     <mlivre-section-product />
   </div>
