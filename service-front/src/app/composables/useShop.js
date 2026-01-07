@@ -3,7 +3,12 @@ export default (id, data) => {
     const scope = reactive({ test: true });
 
     scope.taxonomy = data.taxonomy;
-    scope.products = data.products;
+    scope.products = data.products.map((product) => {
+      for (const attr in scope.taxonomy) {
+        product[attr] = product[attr] || [];
+      }
+      return product;
+    });
 
     scope.taxonomyItems = (attr, values) => {
       if (typeof scope.taxonomy[attr] == "undefined") return [];

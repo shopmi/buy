@@ -135,10 +135,12 @@ const scope = useShopAbissal();
               <div
                 class="relative aspect-[4/5] overflow-hidden bg-gray-900 mb-4 border border-gray-800 group-hover:border-blood-red transition-colors"
               >
-                <img
-                  :src="p.image"
-                  class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 glitch-hover"
-                />
+                <nuxt-link :to="`/abissal/${p.id}`">
+                  <img
+                    :src="p.image"
+                    class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 glitch-hover"
+                  />
+                </nuxt-link>
                 <div
                   class="flex flex-col gap-1 absolute bottom-2 left-2 text-black text-xs font-mono uppercase font-bold"
                 >
