@@ -43,6 +43,22 @@ export default (id) => {
           tags: [],
           flags: [],
         },
+        setPage(page) {
+          if (page == "prev") {
+            page = scope.productPage.params.page - 1;
+          } else if (page == "next") {
+            page = scope.productPage.params.page + 1;
+          } else if (page == "last") {
+            page = scope.productPage.pages;
+          }
+
+          if (page < 1) page = 1;
+          if (page > scope.productPage.pages) {
+            page = scope.productPage.pages;
+          }
+
+          scope.productPage.params.page = page;
+        },
       };
 
       scope.productPage.data = computed(() => {

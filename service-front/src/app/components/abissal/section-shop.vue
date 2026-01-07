@@ -1,5 +1,5 @@
 <script setup>
-const scope = useShopAbissal();
+const scope = useShop("abissal");
 </script>
 
 <template>
