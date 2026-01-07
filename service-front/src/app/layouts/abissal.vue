@@ -21,7 +21,7 @@ useHead({
   },
 });
 
-const abissal = useAbissal();
+const abissal = useShopAbissal();
 </script>
 
 <template>

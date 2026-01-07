@@ -1,5 +1,5 @@
 <script setup>
-const scope = useAbissal();
+const scope = useShopAbissal();
 </script>
 
 <template>
@@ -13,68 +13,31 @@ const scope = useAbissal();
             type="text"
             placeholder="Search the archive..."
             class="w-full bg-gray-900/50 border border-gray-700 text-white p-3 pl-10 focus:border-blood-red outline-none text-sm uppercase placeholder-gray-600 transition-colors"
+            v-model="scope.productPage.params.term"
           />
           <i class="fas fa-search absolute top-3.5 left-3 text-gray-500"></i>
         </div>
 
-        <!-- Categories -->
+        <!-- Price Range -->
         <div>
           <h3
             class="text-xl text-white mb-6 border-l-2 border-blood-red pl-3 uppercase flex items-center gap-2"
           >
-            <span class="text-blood-red">🜃</span> Categoria
+            <span class="text-blood-red">🜏</span> Preço
           </h3>
-          <div class="space-y-3">
-            <label class="flex items-center cursor-pointer group">
-              <input
-                type="checkbox"
-                class="accent-blood-red w-4 h-4 bg-gray-900 border-gray-700 rounded-none focus:ring-0"
-              />
-              <span
-                class="ml-3 text-gray-400 group-hover:text-white transition-colors text-sm uppercase"
-                >Filmes Cult (66)</span
-              >
-            </label>
-            <label class="flex items-center cursor-pointer group">
-              <input
-                type="checkbox"
-                class="accent-blood-red w-4 h-4 bg-gray-900 border-gray-700 rounded-none focus:ring-0"
-              />
-              <span
-                class="ml-3 text-gray-400 group-hover:text-white transition-colors text-sm uppercase"
-                >Bandas Obscuras (42)</span
-              >
-            </label>
-            <label class="flex items-center cursor-pointer group">
-              <input
-                type="checkbox"
-                class="accent-blood-red w-4 h-4 bg-gray-900 border-gray-700 rounded-none focus:ring-0"
-              />
-              <span
-                class="ml-3 text-gray-400 group-hover:text-white transition-colors text-sm uppercase"
-                >Anime Gore (13)</span
-              >
-            </label>
-            <label class="flex items-center cursor-pointer group">
-              <input
-                type="checkbox"
-                class="accent-blood-red w-4 h-4 bg-gray-900 border-gray-700 rounded-none focus:ring-0"
-              />
-              <span
-                class="ml-3 text-gray-400 group-hover:text-white transition-colors text-sm uppercase"
-                >Ocultismo (9)</span
-              >
-            </label>
-            <label class="flex items-center cursor-pointer group">
-              <input
-                type="checkbox"
-                class="accent-blood-red w-4 h-4 bg-gray-900 border-gray-700 rounded-none focus:ring-0"
-              />
-              <span
-                class="ml-3 text-gray-400 group-hover:text-white transition-colors text-sm uppercase"
-                >Séries B (21)</span
-              >
-            </label>
+          <div class="flex gap-4">
+            <input
+              type="number"
+              placeholder="Min"
+              v-model.number="scope.productPage.params.priceMin"
+              class="w-full bg-gray-900/50 border border-gray-700 text-white p-2 outline-none text-sm uppercase placeholder-gray-600 focus:border-blood-red transition-colors"
+            />
+            <input
+              type="number"
+              placeholder="Max"
+              v-model.number="scope.productPage.params.priceMax"
+              class="w-full bg-gray-900/50 border border-gray-700 text-white p-2 outline-none text-sm uppercase placeholder-gray-600 focus:border-blood-red transition-colors"
+            />
           </div>
         </div>
 
@@ -83,59 +46,26 @@ const scope = useAbissal();
           <h3
             class="text-xl text-white mb-6 border-l-2 border-blood-red pl-3 uppercase flex items-center gap-2"
           >
-            <span class="text-blood-red">🜂</span> Tipo de Produto
+            <span class="text-blood-red">🜏</span> Tipo de Produto
           </h3>
           <div class="space-y-3">
-            <label class="flex items-center cursor-pointer group">
-              <input
-                type="checkbox"
-                class="accent-blood-red w-4 h-4"
-              />
-              <span
-                class="ml-3 text-gray-400 group-hover:text-white transition-colors text-sm uppercase"
-                >Camisetas</span
-              >
-            </label>
-            <label class="flex items-center cursor-pointer group">
-              <input
-                type="checkbox"
-                class="accent-blood-red w-4 h-4"
-              />
-              <span
-                class="ml-3 text-gray-400 group-hover:text-white transition-colors text-sm uppercase"
-                >Moletons</span
-              >
-            </label>
-            <label class="flex items-center cursor-pointer group">
-              <input
-                type="checkbox"
-                class="accent-blood-red w-4 h-4"
-              />
-              <span
-                class="ml-3 text-gray-400 group-hover:text-white transition-colors text-sm uppercase"
-                >Canecas</span
-              >
-            </label>
-            <label class="flex items-center cursor-pointer group">
-              <input
-                type="checkbox"
-                class="accent-blood-red w-4 h-4"
-              />
-              <span
-                class="ml-3 text-gray-400 group-hover:text-white transition-colors text-sm uppercase"
-                >Almofadas</span
-              >
-            </label>
-            <label class="flex items-center cursor-pointer group">
-              <input
-                type="checkbox"
-                class="accent-blood-red w-4 h-4"
-              />
-              <span
-                class="ml-3 text-gray-400 group-hover:text-white transition-colors text-sm uppercase"
-                >Prints / Quadros</span
-              >
-            </label>
+            <template
+              v-for="t in scope.taxonomy.types"
+              :key="t.id"
+            >
+              <label class="flex items-center cursor-pointer group">
+                <input
+                  type="checkbox"
+                  class="accent-blood-red w-4 h-4"
+                  :value="t.id"
+                  v-model="scope.productPage.params.types"
+                />
+                <span
+                  class="ml-3 text-gray-400 group-hover:text-white transition-colors text-sm uppercase"
+                  >{{ t.name }}</span
+                >
+              </label>
+            </template>
           </div>
         </div>
 
@@ -144,7 +74,7 @@ const scope = useAbissal();
           <h3
             class="text-xl text-white mb-6 border-l-2 border-blood-red pl-3 uppercase flex items-center gap-2"
           >
-            <span class="text-blood-red">🜄</span> Tamanho
+            <span class="text-blood-red">🜏</span> Tamanho
           </h3>
           <div class="grid grid-cols-3 gap-2">
             <button
@@ -181,7 +111,10 @@ const scope = useAbissal();
         <div
           class="flex justify-between items-center mb-8 pb-4 border-b border-gray-900"
         >
-          <p class="text-gray-500 text-sm">Showing 6 of 666 Artifacts</p>
+          <p class="text-gray-500 text-sm">
+            Exibindo {{ scope.productPage.data.length }} de
+            {{ scope.productPage.results }} Elementos
+          </p>
           <div class="flex gap-4 text-sm">
             <span class="text-gray-500">Sort by:</span>
             <select

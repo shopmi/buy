@@ -1,8 +1,8 @@
 <template>
   <nuxt-layout name="abissal">
     <template #default>
-      <abissal-hero />
-      <abissal-shop />
+      <abissal-section-hero />
+      <abissal-section-shop />
     </template>
   </nuxt-layout>
 </template>

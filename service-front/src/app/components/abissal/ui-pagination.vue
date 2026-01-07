@@ -29,6 +29,7 @@ const pageGoto = (page) => {
 
 <template>
   <div
+    v-if="props.pages > 1"
     class="mt-24 flex justify-center items-center gap-4 text-sm uppercase tracking-widest"
   >
     <button
