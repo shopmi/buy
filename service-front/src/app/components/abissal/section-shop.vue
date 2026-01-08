@@ -116,13 +116,23 @@ const scope = useShop("abissal");
             {{ scope.productPage.results }} Elementos
           </p>
           <div class="flex gap-4 text-sm">
-            <span class="text-gray-500">Sort by:</span>
+            <span class="text-gray-500">Ordenar por:</span>
             <select
               class="bg-transparent text-white outline-none cursor-pointer uppercase font-bold"
+              v-model="scope.productPage.params.order"
             >
-              <option>Newest</option>
-              <option>Price: Low to High</option>
-              <option>Price: High to Low</option>
+              <option
+                value="price:asc"
+                class="text-black"
+              >
+                Menor Preço
+              </option>
+              <option
+                value="price:desc"
+                class="text-black"
+              >
+                Maior Preço
+              </option>
             </select>
           </div>
         </div>
