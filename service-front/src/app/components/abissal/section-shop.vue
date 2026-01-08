@@ -168,11 +168,7 @@ const scope = useShop("abissal");
           </template>
         </div>
 
-        <abissal-ui-pagination
-          :pages="scope.productPage.pages"
-          v-model:page="scope.productPage.params.page"
-          v-model:limit="scope.productPage.params.limit"
-        />
+        <abissal-ui-pagination :data="scope.productPage" />
       </main>
     </div>
   </section>

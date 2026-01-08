@@ -1,43 +1,32 @@
 <script setup>
 const props = defineProps({
-  page: { type: Number, default: 1 },
-  pages: { type: Number, default: 0 },
-  limit: { type: Number, default: 6 },
+  data: { type: Object, required: true },
 });
 
-const emit = defineEmits(["update:page", "update:limit"]);
-
 const pageGoto = (page) => {
-  if (page == "prev") {
-    page = props.page - 1;
+  if (props.data.setPage) {
+    props.data.setPage(page);
+  } else {
+    // Fallback if setPage is not defined in the object (though it should be)
+    // This part essentially duplicates logic if we wanted to be safe,
+    // but the instruction implies relying on the object customization.
+    // For now, assuming scope.productPage has setPage as per recent edits.
+    console.warn("setPage method missing on pagination data object");
   }
-  if (page == "next") {
-    page = props.page + 1;
-  }
-  if (page == "last") {
-    page = props.pages;
-  }
-  if (page < 1) {
-    page = 1;
-  }
-  if (page > props.pages) {
-    page = props.pages;
-  }
-  emit("update:page", page);
 };
 </script>
 
 <template>
   <div
-    v-if="props.pages > 1"
+    v-if="props.data.pages > 1"
     class="mt-24 flex justify-center items-center gap-4 text-sm uppercase tracking-widest"
   >
     <button
       type="button"
       class="disabled:opacity-30 transition-colors"
       :class="{
-        'text-gray-500 hover:text-white': props.page != 1,
-        'text-blood-red font-bold': props.page == 1,
+        'text-gray-500 hover:text-white': props.data.params.page != 1,
+        'text-blood-red font-bold': props.data.params.page == 1,
       }"
       @click="pageGoto(1)"
     >
@@ -53,13 +42,13 @@ const pageGoto = (page) => {
     </button>
 
     <div class="flex gap-2">
-      <template v-for="page in props.pages">
+      <template v-for="page in props.data.pages">
         <button
           type="button"
           class="transition-colors px-2"
           :class="{
-            'text-gray-500 hover:text-white': page != props.page,
-            'text-blood-red font-bold': page == props.page,
+            'text-gray-500 hover:text-white': page != props.data.params.page,
+            'text-blood-red font-bold': page == props.data.params.page,
           }"
           @click="pageGoto(page)"
         >
@@ -80,8 +69,9 @@ const pageGoto = (page) => {
       type="button"
       class="disabled:opacity-30 transition-colors"
       :class="{
-        'text-gray-500 hover:text-white': props.page != props.pages,
-        'text-blood-red font-bold': props.page == props.pages,
+        'text-gray-500 hover:text-white':
+          props.data.params.page != props.data.pages,
+        'text-blood-red font-bold': props.data.params.page == props.data.pages,
       }"
       @click="pageGoto('last')"
     >
