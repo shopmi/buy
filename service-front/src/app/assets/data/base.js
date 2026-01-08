@@ -1,6 +1,9 @@
 import { faker } from "@faker-js/faker";
+import _ from "lodash";
 
-const types = [
+const taxonomy = {};
+
+taxonomy.types = [
   { id: "camiseta", name: "Camiseta" },
   { id: "moleton", name: "Moleton" },
   { id: "caneca", name: "Caneca" },
@@ -8,7 +11,7 @@ const types = [
   { id: "quadro", name: "Quadro" },
 ];
 
-const tags = [
+taxonomy.tags = [
   { id: "filme", name: "Filme" },
   { id: "cantor", name: "Cantor(a)" },
   { id: "banda", name: "Banda" },
@@ -20,37 +23,30 @@ const tags = [
   { id: "quadrinho", name: "Quadrinho" },
 ];
 
-const flags = [
+taxonomy.flags = [
   { id: "limited", name: "Limitado", color: "teal" },
   { id: "promo", name: "Promoção", color: "red" },
-  { id: "new", name: "New", color: "blue" },
+  { id: "new", name: "Novo", color: "blue" },
 ];
 
-const products = Array.from({ length: 100 }, () => ({
-  id: faker.string.uuid(),
-  name: faker.commerce.productName(),
-  price: parseFloat(faker.commerce.price({ min: 10, max: 1000, dec: 2 })),
-  description: faker.commerce.productDescription(),
-  image: faker.image.urlLoremFlickr({ category: "fashion" }),
-  types: faker.helpers.arrayElements(
-    types.map((t) => t.id),
-    { min: 1, max: 2 }
-  ),
-  tags: faker.helpers.arrayElements(
-    tags.map((t) => t.id),
-    { min: 1, max: 3 }
-  ),
-  flags: faker.helpers.arrayElements(
-    flags.map((f) => f.id),
-    { min: 0, max: 1 }
-  ),
-}));
+const products = Array.from({ length: 100 }, () => {
+  const product = {
+    id: faker.string.uuid(),
+    name: faker.commerce.productName(),
+    price: parseFloat(faker.commerce.price({ min: 10, max: 1000, dec: 2 })),
+    description: faker.commerce.productDescription(),
+    image: faker.image.urlLoremFlickr({ category: "fashion" }),
+  };
+
+  for (const attr in taxonomy) {
+    const ids = taxonomy[attr].map((tax) => tax.id);
+    product[attr] = _.sampleSize(ids, _.random(1, ids.length - 2));
+  }
+
+  return product;
+});
 
 export default {
-  taxonomy: {
-    types,
-    tags,
-    flags,
-  },
+  taxonomy,
   products,
 };

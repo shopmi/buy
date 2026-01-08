@@ -6,7 +6,15 @@ export default (id) => {
     importFn().then((mod) => {
       mod = mod.default || mod;
       scope.ready = true;
+
       scope.taxonomy = mod.taxonomy;
+      Object.entries(scope.taxonomy).map(([attr, items]) => {
+        for (const item of items) {
+          item.icon = item.icon || "ci:dot-04-l";
+          item.color = item.color || "gray";
+        }
+      });
+
       scope.products = mod.products.map((product) => {
         for (const attr in scope.taxonomy) {
           product[attr] = product[attr] || [];
@@ -48,6 +56,8 @@ export default (id) => {
             page = scope.productPage.params.page - 1;
           } else if (page == "next") {
             page = scope.productPage.params.page + 1;
+          } else if (page == "first") {
+            page = 1;
           } else if (page == "last") {
             page = scope.productPage.pages;
           }

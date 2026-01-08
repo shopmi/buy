@@ -8,6 +8,10 @@ useHead({
   },
 });
 
+definePageMeta({
+  scrollToTop: false,
+});
+
 // Filter helpers
 const toggleFilter = (array, value) => {
   const index = array.indexOf(value);
@@ -381,18 +385,23 @@ const isFiltered = (array, value) => array.includes(value);
         >
           <nav class="flex items-center gap-2">
             <button
-              @click="scope.productPage.setPage(1)"
-              :disabled="scope.productPage.params.page === 1"
-              class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-black hover:bg-black hover:text-white transition-all text-xs font-medium rounded-sm disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-gray-600 disabled:hover:border-gray-200"
+              @click="scope.productPage.setPage('first')"
+              class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-black hover:text-white transition-all text-xs font-medium rounded-sm disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-gray-600"
             >
-              <i class="fas fa-angle-double-left"></i>
+              <icon
+                name="ic:round-keyboard-double-arrow-left"
+                size="30"
+              />
             </button>
+
             <button
               @click="scope.productPage.setPage('prev')"
-              :disabled="scope.productPage.params.page === 1"
-              class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-black hover:bg-black hover:text-white transition-all text-xs font-medium rounded-sm disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-gray-600 disabled:hover:border-gray-200"
+              class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-black hover:text-white transition-all text-xs font-medium rounded-sm disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-gray-600"
             >
-              <i class="fas fa-angle-left"></i>
+              <icon
+                name="ic:baseline-keyboard-arrow-left"
+                size="30"
+              />
             </button>
 
             <template
@@ -400,10 +409,6 @@ const isFiltered = (array, value) => array.includes(value);
               :key="p"
             >
               <button
-                v-if="
-                  p >= scope.productPage.params.page - 2 &&
-                  p <= scope.productPage.params.page + 2
-                "
                 @click="scope.productPage.setPage(p)"
                 class="w-10 h-10 flex items-center justify-center border text-xs font-medium rounded-sm transition-all"
                 :class="
@@ -418,21 +423,22 @@ const isFiltered = (array, value) => array.includes(value);
 
             <button
               @click="scope.productPage.setPage('next')"
-              :disabled="
-                scope.productPage.params.page === scope.productPage.pages
-              "
-              class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-black hover:bg-black hover:text-white transition-all text-xs font-medium rounded-sm disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-gray-600 disabled:hover:border-gray-200"
+              class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-black hover:text-white transition-all text-xs font-medium rounded-sm disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-gray-600"
             >
-              <i class="fas fa-angle-right"></i>
+              <icon
+                name="ic:round-keyboard-double-arrow-right"
+                size="30"
+              />
             </button>
+
             <button
               @click="scope.productPage.setPage('last')"
-              :disabled="
-                scope.productPage.params.page === scope.productPage.pages
-              "
-              class="w-10 h-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-black hover:bg-black hover:text-white transition-all text-xs font-medium rounded-sm disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-gray-600 disabled:hover:border-gray-200"
+              class="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-black hover:text-white transition-all text-xs font-medium rounded-sm disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-gray-600"
             >
-              <i class="fas fa-angle-double-right"></i>
+              <icon
+                name="ic:baseline-keyboard-arrow-right"
+                size="30"
+              />
             </button>
           </nav>
         </div>
