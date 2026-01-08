@@ -7,15 +7,21 @@ const scope = useShop("abissal");
     <div class="container mx-auto px-6 flex flex-col lg:flex-row gap-12">
       <!-- Sidebar Filters -->
       <aside class="lg:w-1/4 space-y-12">
-        <!-- Search -->
-        <div class="relative">
-          <input
-            type="text"
-            placeholder="Search the archive..."
-            class="w-full bg-gray-900/50 border border-gray-700 text-white p-3 pl-10 focus:border-blood-red outline-none text-sm uppercase placeholder-gray-600 transition-colors"
-            v-model="scope.productPage.params.term"
-          />
-          <i class="fas fa-search absolute top-3.5 left-3 text-gray-500"></i>
+        <div>
+          <h3
+            class="text-xl text-white mb-6 border-l-2 border-blood-red pl-3 uppercase flex items-center gap-2"
+          >
+            <span class="text-blood-red">🜏</span> Busca
+          </h3>
+          <div class="flex gap-4">
+            <input
+              v-model="scope.productPage.params.term"
+              type="text"
+              placeholder="Search the archive..."
+              class="w-full bg-gray-900/50 border border-gray-700 text-white p-3 pl-10 focus:border-blood-red outline-none text-sm uppercase placeholder-gray-600 transition-colors"
+            />
+            <i class="fas fa-search absolute top-3.5 left-3 text-gray-500"></i>
+          </div>
         </div>
 
         <!-- Price Range -->
@@ -69,39 +75,31 @@ const scope = useShop("abissal");
           </div>
         </div>
 
-        <!-- Sizes -->
-        <div>
+        <!-- Expression (Tags) -->
+        <div v-if="scope.taxonomy.tags">
           <h3
             class="text-xl text-white mb-6 border-l-2 border-blood-red pl-3 uppercase flex items-center gap-2"
           >
-            <span class="text-blood-red">🜏</span> Tamanho
+            <span class="text-blood-red">🜏</span> Expressão
           </h3>
-          <div class="grid grid-cols-3 gap-2">
-            <button
-              class="border border-gray-700 hover:border-white py-2 text-xs uppercase hover:bg-white hover:text-black transition-all"
+          <div class="space-y-3">
+            <template
+              v-for="t in scope.taxonomy.tags"
+              :key="t.id"
             >
-              P
-            </button>
-            <button
-              class="border border-gray-700 hover:border-white py-2 text-xs uppercase hover:bg-white hover:text-black transition-all"
-            >
-              M
-            </button>
-            <button
-              class="border border-gray-700 hover:border-white py-2 text-xs uppercase hover:bg-white hover:text-black transition-all bg-white text-black font-bold"
-            >
-              G
-            </button>
-            <button
-              class="border border-gray-700 hover:border-white py-2 text-xs uppercase hover:bg-white hover:text-black transition-all"
-            >
-              GG
-            </button>
-            <button
-              class="border border-gray-700 hover:border-white py-2 text-xs uppercase hover:bg-white hover:text-black transition-all"
-            >
-              XG
-            </button>
+              <label class="flex items-center cursor-pointer group">
+                <input
+                  type="checkbox"
+                  class="accent-blood-red w-4 h-4"
+                  :value="t.id"
+                  v-model="scope.productPage.params.tags"
+                />
+                <span
+                  class="ml-3 text-gray-400 group-hover:text-white transition-colors text-sm uppercase"
+                  >{{ t.name }}</span
+                >
+              </label>
+            </template>
           </div>
         </div>
       </aside>

@@ -7,7 +7,7 @@ export default {
       { id: "almofada", name: "Almofada" },
       { id: "quadro", name: "Quadro" },
     ],
-    expression: [
+    tags: [
       { id: "filme", name: "Filme" },
       { id: "cantor", name: "Cantor(a)" },
       { id: "banda", name: "Banda" },
