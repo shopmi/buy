@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   ],
 
   app: {
+    baseURL: "/buy/",
     head: {
       script: [{ src: "https://cdn.tailwindcss.com" }],
     },
