@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export default (id) => {
   const modules = import.meta.glob("@/assets/data/*.js");
 
@@ -45,11 +47,17 @@ export default (id) => {
           page: 1,
           limit: 12,
           term: "",
+          order: "id:desc",
           priceMin: null,
           priceMax: null,
           types: [],
           tags: [],
           flags: [],
+        },
+        paramToggle(value, array) {
+          const index = array.indexOf(value);
+          if (index === -1) array.push(value);
+          else array.splice(index, 1);
         },
         setPage(page) {
           if (page == "prev") {
@@ -117,6 +125,9 @@ export default (id) => {
             );
           });
         }
+
+        const [orderBy, order] = scope.productPage.params.order.split(":");
+        items = _.orderBy(items, [orderBy], [order]);
 
         const chunk = (arr, size) =>
           Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>

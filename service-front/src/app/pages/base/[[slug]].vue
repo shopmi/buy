@@ -12,13 +12,6 @@ definePageMeta({
   scrollToTop: false,
 });
 
-// Filter helpers
-const toggleFilter = (array, value) => {
-  const index = array.indexOf(value);
-  if (index === -1) array.push(value);
-  else array.splice(index, 1);
-};
-
 const isFiltered = (array, value) => array.includes(value);
 </script>
 
@@ -146,6 +139,49 @@ const isFiltered = (array, value) => array.includes(value);
     <main class="container mx-auto px-6 py-8 flex flex-col md:flex-row gap-12">
       <!-- Sidebar -->
       <aside class="w-full md:w-64 shrink-0 space-y-10">
+        <!-- Search -->
+        <div>
+          <h3
+            class="font-bold text-sm uppercase tracking-widest mb-6 border-b border-gray-200 pb-2"
+          >
+            Search
+          </h3>
+          <div class="relative">
+            <input
+              type="text"
+              v-model="scope.productPage.params.term"
+              placeholder="Product name..."
+              class="w-full bg-gray-50 border border-gray-200 p-3 pl-10 text-sm rounded-sm focus:border-black outline-none transition-colors"
+            />
+            <icon
+              name="ic:baseline-search"
+              class="absolute left-3 top-3 text-gray-400"
+              size="18"
+            />
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-semibold mb-3 uppercase tracking-wide">
+            Price Range
+          </h4>
+          <div class="flex items-center gap-2 text-sm">
+            <input
+              type="number"
+              v-model.number="scope.productPage.params.priceMin"
+              placeholder="0"
+              class="w-full bg-gray-50 border border-gray-200 p-2 text-xs rounded-sm focus:border-black outline-none transition-colors"
+            />
+            <span class="text-gray-400">-</span>
+            <input
+              type="number"
+              v-model.number="scope.productPage.params.priceMax"
+              placeholder="Max"
+              class="w-full bg-gray-50 border border-gray-200 p-2 text-xs rounded-sm focus:border-black outline-none transition-colors"
+            />
+          </div>
+        </div>
+
         <!-- Categories (Tags) -->
         <div v-if="scope.taxonomy.tags">
           <h3
@@ -163,7 +199,12 @@ const isFiltered = (array, value) => array.includes(value);
                   ? 'font-bold text-black bg-gray-100'
                   : ''
               "
-              @click="toggleFilter(scope.productPage.params.tags, tag.id)"
+              @click="
+                scope.productPage.paramToggle(
+                  tag.id,
+                  scope.productPage.params.tags
+                )
+              "
             >
               <span>{{ tag.name }}</span>
               <!-- <span class="text-xs text-gray-400">12</span> Mock count -->
@@ -206,27 +247,6 @@ const isFiltered = (array, value) => array.includes(value);
               </label>
             </div>
           </div>
-
-          <div>
-            <h4 class="text-xs font-semibold mb-3 uppercase tracking-wide">
-              Price Range
-            </h4>
-            <div class="flex items-center gap-2 text-sm">
-              <input
-                type="number"
-                v-model.number="scope.productPage.params.priceMin"
-                placeholder="0"
-                class="w-full bg-gray-50 border border-gray-200 p-2 text-xs rounded-sm focus:border-black outline-none transition-colors"
-              />
-              <span class="text-gray-400">-</span>
-              <input
-                type="number"
-                v-model.number="scope.productPage.params.priceMax"
-                placeholder="Max"
-                class="w-full bg-gray-50 border border-gray-200 p-2 text-xs rounded-sm focus:border-black outline-none transition-colors"
-              />
-            </div>
-          </div>
         </div>
         <!-- Ad Banner Sidebar -->
         <div class="bg-gray-100 p-6 text-center rounded-sm">
@@ -258,14 +278,13 @@ const isFiltered = (array, value) => array.includes(value);
           <div class="flex items-center gap-4">
             <!-- Sort mock -->
             <div class="flex items-center gap-2 text-sm text-gray-600">
-              <span>Sort By:</span>
+              <span>Ordenar Por:</span>
               <select
+                v-model="scope.productPage.params.order"
                 class="border-none bg-transparent font-semibold text-black focus:ring-0 cursor-pointer outline-none"
               >
-                <option>Recommended</option>
-                <option>Newest</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
+                <option value="price:asc">Menor Preço</option>
+                <option value="price:desc">Maior Preço</option>
               </select>
             </div>
           </div>
