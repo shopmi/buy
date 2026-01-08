@@ -25,7 +25,10 @@ export default (id) => {
           id: "",
           name: "",
           description: "",
+          image: null,
           price: 0,
+          priceOld: 0,
+          url: null,
           ...product,
         };
       });
