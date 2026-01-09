@@ -1,9 +1,11 @@
 import _ from "lodash";
+import { useStorage } from "@vueuse/core";
 
 export default (storeId) => {
   const modules = import.meta.glob("@/assets/data/*.js");
 
   const scope = defineStore(storeId, () => {
+    const route = useRoute();
     const importFn = modules[`/assets/data/${storeId}.js`];
     importFn().then((mod) => {
       mod = mod.default || mod;
@@ -142,6 +144,68 @@ export default (storeId) => {
         scope.productPage.results = items.length;
         return chunks[scope.productPage.params.page - 1] || [];
       });
+
+      scope.cart = {
+        items: useStorage(`cart-${storeId}`, []),
+        total: computed(() => {
+          let total = 0;
+
+          for (const item of scope.cart.items) {
+            const product = scope.products.find(
+              (product) => product.id === item.productId
+            );
+            if (product) {
+              total += (product.price || 0) * item.quantity;
+            }
+          }
+          return total;
+        }),
+        add(productId, quantityToAdd = 1) {
+          const index = scope.cart.items.findIndex(
+            (item) => item.productId === productId
+          );
+
+          if (index > -1) {
+            const newQuantity =
+              scope.cart.items[index].quantity + quantityToAdd;
+            if (newQuantity <= 0) {
+              scope.cart.items.splice(index, 1);
+            } else if (newQuantity <= 99) {
+              scope.cart.items[index].quantity = newQuantity;
+            }
+          } else if (quantityToAdd > 0) {
+            scope.cart.items.push({
+              productId,
+              quantity: Math.min(quantityToAdd, 99),
+            });
+          }
+        },
+        remove(productId) {
+          const index = scope.cart.items.findIndex(
+            (i) => i.productId === productId
+          );
+          if (index !== -1) {
+            scope.cart.items.splice(index, 1);
+          }
+        },
+        drawer: {
+          show: false,
+          toggle(value = null) {
+            if (value === null) {
+              value = !scope.cart.drawer.show;
+            }
+            scope.cart.drawer.show = value;
+          },
+        },
+      };
+
+      if (route.query.order_status) {
+        if (route.query.order_status === "success") {
+          //
+        } else if (route.query.order_status === "cancel") {
+          //
+        }
+      }
     });
 
     return reactive({
@@ -155,24 +219,15 @@ export default (storeId) => {
       },
       taxonomy: {},
       products: [],
-      cartItems: useStorage(`cart-${storeId}`, []),
 
-      cartItemAdd(productId, quantity = 1) {
-        const item = this.cartItems.find((i) => i.productId === productId);
-        if (item) {
-          item.quantity += quantity;
-        } else {
-          this.cartItems.push({ productId, quantity });
-        }
-      },
-
-      cartItemRemove(productId) {
-        const index = this.cartItems.findIndex(
-          (i) => i.productId === productId
-        );
-        if (index !== -1) {
-          this.cartItems.splice(index, 1);
-        }
+      cart: {
+        items: useStorage(`cart-${storeId}`, []),
+        add: () => null,
+        remove: () => null,
+        drawer: {
+          show: false,
+          toggle: () => null,
+        },
       },
     });
   })();

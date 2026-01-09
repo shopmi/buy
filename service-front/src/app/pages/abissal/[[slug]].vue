@@ -10,6 +10,7 @@ definePageMeta({
       <abissal-section-hero />
       <abissal-section-shop />
       <abissal-section-product />
+      <abissal-section-cart />
     </template>
   </nuxt-layout>
 </template>

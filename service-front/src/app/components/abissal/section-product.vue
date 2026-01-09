@@ -12,6 +12,13 @@ const closeModal = () => {
   router.push("/abissal");
 };
 
+const addToCart = () => {
+  if (product.value) {
+    scope.cart.add(product.value.id, 1);
+    scope.cart.drawer.toggle(true);
+  }
+};
+
 // Prevent background scrolling when modal is open
 watch(product, (val) => {
   if (import.meta.client) {
@@ -160,6 +167,7 @@ onUnmounted(() => {
           <!-- Actions -->
           <div class="mt-auto space-y-4">
             <button
+              @click="addToCart"
               class="w-full bg-white text-black py-4 uppercase tracking-[0.2em] font-bold hover:bg-blood-red hover:text-white transition-all duration-300 relative group overflow-hidden"
             >
               <span

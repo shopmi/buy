@@ -20,6 +20,7 @@ useHead({
     class: "bg-[#050505]", // Ensure global background matches void black to avoid flashes
   },
 });
+const shop = useShop("abissal");
 </script>
 
 <template>
@@ -110,19 +111,34 @@ useHead({
             >Manifesto</a
           >
         </div>
-
-        <!-- Cart -->
-        <div
-          class="text-white hover:text-blood-red cursor-pointer transition-colors relative"
-        >
-          <i class="fas fa-shopping-basket text-xl"></i>
-          <span
-            class="absolute -top-2 -right-2 text-[10px] bg-blood-red text-black font-bold px-1 rounded-sm"
-            >0</span
-          >
-        </div>
       </div>
     </nav>
+
+    <!-- Floating Cart Trigger -->
+    <div
+      @click="shop.cart.drawer.toggle()"
+      class="fixed bottom-8 right-8 z-[500] w-16 h-16 bg-[#050505] border border-red-900/30 rounded-full flex items-center justify-center cursor-pointer hover:bg-red-900/20 hover:scale-110 hover:rotate-6 transition-all duration-300 shadow-[0_0_30px_rgba(138,3,3,0.2)] group"
+    >
+      <i
+        class="fas fa-shopping-basket text-2xl text-gray-400 group-hover:text-[#8a0303] transition-colors"
+      ></i>
+      <div
+        v-if="shop.cart.items.length > 0"
+        class="absolute -top-1 -right-1 flex items-center justify-center w-6 h-6 bg-[#8a0303] text-white text-[10px] font-bold rounded-full border border-black shadow-lg"
+      >
+        {{ shop.cart.items.length }}
+      </div>
+      <!-- Pulse Effect -->
+      <div
+        class="absolute inset-0 rounded-full border border-red-900/20 animate-ping opacity-20 pointer-events-none"
+      ></div>
+
+      <icon
+        name="material-symbols:shopping-bag-sharp"
+        class="text-blood-red"
+        size="30"
+      />
+    </div>
 
     <slot name="default"></slot>
 
@@ -444,14 +460,21 @@ h4 {
   }
 }
 
-/* Custom Scrollbar for sidebar */
-aside::-webkit-scrollbar {
-  width: 2px;
+/* Global Scrollbar for Abissal Theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
-aside::-webkit-scrollbar-track {
-  background: #111;
+::-webkit-scrollbar-track {
+  background: #050505;
 }
-aside::-webkit-scrollbar-thumb {
-  background: #8a0303;
+::-webkit-scrollbar-thumb {
+  background-color: rgba(138, 3, 3, 0.5);
+  border-radius: 999px;
+  border: 3px solid #050505;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(138, 3, 3, 0.8);
+  border: 2px solid #050505;
 }
 </style>
