@@ -2,7 +2,7 @@
 
 docker compose stop
 
-docker compose run --rm service-front sh -c '{
+docker compose --env-file .env.prod run --rm service-front sh -c '{
   npm install;
   npm run generate;
 }'
