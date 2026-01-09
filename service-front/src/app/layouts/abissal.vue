@@ -98,12 +98,12 @@ const shop = useShop("abissal");
           <a
             href="#shop"
             class="hover:text-white transition-colors"
-            >Sonic</a
+            >Sônico</a
           >
           <a
             href="#shop"
             class="hover:text-white transition-colors"
-            >Oddities</a
+            >Curiosidades</a
           >
           <a
             href="#manifesto"
@@ -148,13 +148,13 @@ const shop = useShop("abissal");
     >
       <div class="container mx-auto px-6 max-w-3xl">
         <div class="text-4xl mb-6 text-blood-red">🜄 🜃 🜂 🜁</div>
-        <h2 class="text-4xl md:text-5xl mb-8">We Serve the Void</h2>
+        <h2 class="text-4xl md:text-5xl mb-8">Nós Servimos ao Vazio</h2>
         <p class="text-gray-400 leading-loose">
-          In a world of mass-produced mediocrity, we curate the strange, the
-          unsettling, and the profound. Our garments are not mere clothing; they
-          are signals to others who dwell in the shadows. Whether you worship at
-          the altar of Jodorowsky or find solace in the noise of Merzbow, you
-          have found your coven.
+          Em um mundo de mediocridade em massa, nós curamos o estranho, o
+          perturbador e o profundo. Nossas vestes não são meras roupas; são
+          sinais para outros que habitam nas sombras. Seja você um adorador no
+          altar de Jodorowsky ou encontre consolo no ruído de Merzbow, você
+          encontrou seu coven.
         </p>
       </div>
     </section>
@@ -165,46 +165,46 @@ const shop = useShop("abissal");
     >
       <div class="container mx-auto px-6 grid md:grid-cols-4 gap-12">
         <div>
-          <h4 class="text-white text-lg mb-6">Explore</h4>
+          <h4 class="text-white text-lg mb-6">Explorar</h4>
           <ul class="space-y-3">
             <li>
               <a
                 href="#"
                 class="hover:text-blood-red transition-colors"
-                >New Arrivals</a
+                >Novidades</a
               >
             </li>
             <li>
               <a
                 href="#"
                 class="hover:text-blood-red transition-colors"
-                >Best Sellers</a
+                >Mais Vendidos</a
               >
             </li>
             <li>
               <a
                 href="#"
                 class="hover:text-blood-red transition-colors"
-                >Artists</a
+                >Artistas</a
               >
             </li>
             <li>
               <a
                 href="#"
                 class="hover:text-blood-red transition-colors"
-                >Gift Cards</a
+                >Cartões Presente</a
               >
             </li>
           </ul>
         </div>
         <div>
-          <h4 class="text-white text-lg mb-6">Support</h4>
+          <h4 class="text-white text-lg mb-6">Suporte</h4>
           <ul class="space-y-3">
             <li>
               <a
                 href="#"
                 class="hover:text-blood-red transition-colors"
-                >Shipping & Returns</a
+                >Envio e Devoluções</a
               >
             </li>
             <li>
@@ -218,27 +218,27 @@ const shop = useShop("abissal");
               <a
                 href="#"
                 class="hover:text-blood-red transition-colors"
-                >Contact Us</a
+                >Fale Conosco</a
               >
             </li>
           </ul>
         </div>
         <div class="md:col-span-2">
-          <h4 class="text-white text-lg mb-6">Join the Outer Circle</h4>
+          <h4 class="text-white text-lg mb-6">Junte-se ao Círculo Exterior</h4>
           <p class="mb-6 max-w-md">
-            Subscribe to receive updates on new drops, esoteric rituals, and
-            forbidden knowledge.
+            Inscreva-se para receber atualizações, rituais esotéricos e
+            conhecimento proibido.
           </p>
           <div class="flex border-b border-white/20 pb-2 max-w-sm">
             <input
               type="email"
-              placeholder="ENTER YOUR EMAIL"
+              placeholder="DIGITE SEU EMAIL"
               class="bg-transparent w-full outline-none text-white placeholder-gray-700 uppercase"
             />
             <button
               class="text-blood-red hover:text-white uppercase font-bold text-sm"
             >
-              Submit
+              Enviar
             </button>
           </div>
           <div class="flex gap-6 mt-8 text-xl">
@@ -262,14 +262,14 @@ const shop = useShop("abissal");
       </div>
 
       <div class="mt-20 text-center uppercase tracking-widest opacity-30">
-        &copy; 2026 Abissal. The abyss gazes back.
+        &copy; 2026 Abissal. O abismo olha de volta.
       </div>
 
       <!-- Background decorative text -->
       <div
         class="absolute bottom-0 right-0 text-[10rem] leading-none text-white/5 pointer-events-none select-none font-bold mix-blend-overlay"
       >
-        VOID
+        VAZIO
       </div>
     </footer>
   </div>

@@ -29,7 +29,7 @@
             class="text-2xl font-serif text-[#8a0303] tracking-widest relative z-10"
             style="font-family: 'Cinzel', serif"
           >
-            Ritual Offerings
+            Oferendas do Ritual
           </h2>
           <button
             @click="shop.cart.drawer.toggle(false)"
@@ -57,7 +57,7 @@
               class="tracking-widest"
               style="font-family: 'Cinzel', serif"
             >
-              The void is empty
+              O vazio está vazio
             </p>
           </div>
 
@@ -120,7 +120,7 @@
                   @click="shop.cart.remove(item.id)"
                   class="text-xs text-gray-600 hover:text-red-500 uppercase tracking-widest transition-colors"
                 >
-                  Sacrifice
+                  Sacrificar
                 </button>
               </div>
             </div>
@@ -136,7 +136,7 @@
             style="font-family: 'Cinzel', serif"
           >
             <span class="text-gray-500 text-sm uppercase tracking-widest"
-              >Tribute Total</span
+              >Tributo Total</span
             >
             <span class="text-3xl text-white">R$ {{ shop.cart.total }},00</span>
           </div>
@@ -167,7 +167,7 @@
                     class="animate-spin"
                     >⛤</span
                   >
-                  <span v-else>Summon Gateway (Checkout)</span>
+                  <span v-else>Pagamento</span>
                 </span>
                 <!-- Glitch overlay on hover -->
                 <div

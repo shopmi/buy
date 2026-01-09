@@ -99,7 +99,7 @@ onUnmounted(() => {
           <div
             class="absolute bottom-6 left-6 font-mono text-xs text-blood-red opacity-60 tracking-widest writing-vertical-rl rotate-180 hidden md:block"
           >
-            ARTIFACT ID: {{ product.id.split("-").pop().toUpperCase() }} //
+            ID ARTEFATO: {{ product.id.split("-").pop().toUpperCase() }} //
           </div>
         </div>
 
@@ -125,13 +125,13 @@ onUnmounted(() => {
             </h1>
             <div class="flex items-center justify-between mt-4">
               <span class="text-3xl font-mono text-gray-300"
-                >${{ product.price }}</span
+                >R$ {{ product.price }},00</span
               >
               <div
                 v-if="product.flags && product.flags.includes('promo')"
                 class="bg-blood-red/20 text-blood-red px-3 py-1 text-xs uppercase font-bold tracking-widest border border-blood-red/50 animate-pulse"
               >
-                Special Offer
+                Oferta Especial
               </div>
             </div>
           </div>
@@ -141,13 +141,13 @@ onUnmounted(() => {
             class="space-y-6 mb-12 text-gray-400 font-courier text-sm md:text-base leading-relaxed"
           >
             <p>
-              An unearthed relic from the void. This item carries with it the
-              weight of forgotten rituals and lost media. Fabricated with
-              materials sourced from the shadows.
+              Uma relíquia desenterrada do vazio. Este item carrega consigo o
+              peso de rituais esquecidos e mídias perdidas. Fabricado com
+              materiais provenientes das sombras.
             </p>
             <p class="italic opacity-70 border-l-2 border-blood-red pl-4">
-              "To wear this is to invite the gaze of the abyss. Proceed with
-              caution, initiate."
+              "Vestir isso é convidar o olhar do abismo. Prossiga com cautela,
+              iniciado."
             </p>
 
             <div
@@ -155,11 +155,11 @@ onUnmounted(() => {
             >
               <div class="border border-[#222] p-3">
                 <span class="block text-gray-500 mb-1">Material</span>
-                <span class="text-white">100% Void Cotton</span>
+                <span class="text-white">100% Algodão do Vazio</span>
               </div>
               <div class="border border-[#222] p-3">
-                <span class="block text-gray-500 mb-1">Origin</span>
-                <span class="text-white">Unknown</span>
+                <span class="block text-gray-500 mb-1">Origem</span>
+                <span class="text-white">Desconhecida</span>
               </div>
             </div>
           </div>
@@ -173,7 +173,7 @@ onUnmounted(() => {
               <span
                 class="relative z-10 flex items-center justify-center gap-2"
               >
-                Add to Ritual <i class="fas fa-plus"></i>
+                Adicionar ao Ritual <i class="fas fa-plus"></i>
               </span>
               <div
                 class="absolute inset-0 bg-blood-red transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 z-0"
@@ -182,7 +182,7 @@ onUnmounted(() => {
             <p
               class="text-[10px] text-center text-gray-600 uppercase tracking-widest"
             >
-              Free shipping for orders over $666
+              Frete grátis para pedidos acima de R$ 666
             </p>
           </div>
 
