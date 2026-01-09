@@ -17,4 +17,11 @@ export default defineNuxtConfig({
       script: [{ src: "https://cdn.tailwindcss.com" }],
     },
   },
+
+  runtimeConfig: {
+    public: {
+      stripeKey: process.env.NUXT_PUBLIC_STRIPE_KEY || "",
+      stripePriceId: process.env.NUXT_PUBLIC_STRIPE_PRICE_ID || "",
+    },
+  },
 });
