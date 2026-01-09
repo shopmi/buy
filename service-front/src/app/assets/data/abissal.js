@@ -26,7 +26,16 @@ export default {
 
   products: [
     {
-      id: "camiseta-david-nebreda",
+      id: "death-grips-money-store",
+      name: "Death Grips - Money Store",
+      price: 100,
+      image:
+        "https://i.pinimg.com/1200x/49/78/35/4978355525e6e5ade3bb6172c300acae.jpg",
+      types: ["camiseta"],
+      tags: ["banda"],
+    },
+    {
+      id: "david-nebreda",
       name: "David Nebreda",
       price: 100,
       image:
@@ -35,7 +44,7 @@ export default {
       tags: ["pintor"],
     },
     {
-      id: "camiseta-trainspotting-in-wonderlands",
+      id: "trainspotting-in-wonderlands",
       name: "Trainspotting in Wonderlands",
       price: 100,
       image:
@@ -44,7 +53,7 @@ export default {
       tags: ["filme"],
     },
     {
-      id: "camiseta-bang-bang",
+      id: "bang-bang",
       name: "Bang Bang",
       price: 100,
       image:
@@ -53,7 +62,7 @@ export default {
       tags: ["filme"],
     },
     {
-      id: "camiseta-irreversible",
+      id: "irreversible",
       name: "Irreversible",
       price: 100,
       image:
@@ -62,7 +71,7 @@ export default {
       tags: ["filme"],
     },
     {
-      id: "camiseta-begotten",
+      id: "begotten",
       name: "Begotten",
       price: 100,
       image:
@@ -71,7 +80,7 @@ export default {
       tags: ["filme"],
     },
     {
-      id: "camiseta-housu",
+      id: "housu",
       name: "Housu",
       price: 100,
       image:
@@ -80,7 +89,7 @@ export default {
       tags: ["filme"],
     },
     {
-      id: "camiseta-tonetta-777-album",
+      id: "tonetta-777-album",
       name: "Tonetta 777 Album",
       price: 100,
       image:
@@ -89,7 +98,7 @@ export default {
       tags: ["cantor"],
     },
     {
-      id: "camiseta-anna-varney-cantodea",
+      id: "anna-varney-cantodea",
       name: "Anna-Varney Cantodea",
       price: 100,
       image:
@@ -98,7 +107,7 @@ export default {
       tags: ["cantor"],
     },
     {
-      id: "camiseta-uzumaki",
+      id: "uzumaki",
       name: "Uzumaki",
       price: 100,
       image:
@@ -107,7 +116,7 @@ export default {
       tags: ["cantor"],
     },
     {
-      id: "camiseta-the-golden-glove",
+      id: "the-golden-glove",
       name: "The Golden Glove",
       price: 100,
       image:
@@ -116,7 +125,7 @@ export default {
       tags: ["cantor"],
     },
     {
-      id: "camiseta-august-underground-mordum",
+      id: "august-underground-mordum",
       name: "August Underground - Mordum",
       price: 100,
       image:
@@ -125,7 +134,7 @@ export default {
       tags: ["cantor"],
     },
     {
-      id: "camiseta-they-live-john-nada",
+      id: "they-live-john-nada",
       name: "They Live - John Nada",
       price: 100,
       image:
@@ -134,7 +143,7 @@ export default {
       tags: ["cantor"],
     },
     {
-      id: "camiseta-they-live-obey",
+      id: "they-live-obey",
       name: "They Live - Obey",
       price: 100,
       image:
@@ -143,7 +152,7 @@ export default {
       tags: ["cantor"],
     },
     {
-      id: "camiseta-basquiat",
+      id: "basquiat",
       name: "Basquiat",
       price: 100,
       image:
@@ -152,7 +161,7 @@ export default {
       tags: ["pintor"],
     },
     {
-      id: "camiseta-jodorowsky-eye",
+      id: "jodorowsky-eye",
       name: "Jodorowsky Eye",
       price: 100,
       image:
