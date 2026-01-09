@@ -8,12 +8,20 @@ export default defineNuxtConfig({
     ["@nuxt/icon", {}],
     ["@nuxt/scripts", {}],
     ["@pinia/nuxt", {}],
+    ["@vueuse/nuxt", {}],
   ],
 
   app: {
     baseURL: "/buy/",
     head: {
       script: [{ src: "https://cdn.tailwindcss.com" }],
+    },
+  },
+
+  runtimeConfig: {
+    public: {
+      stripeKey: process.env.STRIPE_PUBLIC,
+      stripePriceId: process.env.STRIPE_PRICE_ID,
     },
   },
 });

@@ -1,10 +1,10 @@
 import _ from "lodash";
 
-export default (id) => {
+export default (storeId) => {
   const modules = import.meta.glob("@/assets/data/*.js");
 
-  const scope = defineStore(id, () => {
-    const importFn = modules[`/assets/data/${id}.js`];
+  const scope = defineStore(storeId, () => {
+    const importFn = modules[`/assets/data/${storeId}.js`];
     importFn().then((mod) => {
       mod = mod.default || mod;
       scope.ready = true;
@@ -155,6 +155,25 @@ export default (id) => {
       },
       taxonomy: {},
       products: [],
+      cartItems: useStorage(`cart-${storeId}`, []),
+
+      cartItemAdd(productId, quantity = 1) {
+        const item = this.cartItems.find((i) => i.productId === productId);
+        if (item) {
+          item.quantity += quantity;
+        } else {
+          this.cartItems.push({ productId, quantity });
+        }
+      },
+
+      cartItemRemove(productId) {
+        const index = this.cartItems.findIndex(
+          (i) => i.productId === productId
+        );
+        if (index !== -1) {
+          this.cartItems.splice(index, 1);
+        }
+      },
     });
   })();
 

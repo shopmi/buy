@@ -3,6 +3,7 @@ services:
     image: node:22
     ports: [3000:3000]
     working_dir: /app
+    env_file: ./service-front/src/.env
     command: sh -c "npm install && npm run dev"
     volumes:
       - ./service-front/src:/app
