@@ -2,6 +2,7 @@
 const route = useRoute();
 const router = useRouter();
 const scope = useShop("abissal");
+const toast = useToast();
 
 const product = computed(() => {
   if (!route.params.slug) return null;
@@ -16,6 +17,11 @@ const addToCart = () => {
   if (product.value) {
     scope.cart.add(product.value.id, 1);
     scope.cart.drawer.toggle(true);
+    toast.add({
+      title: "Produto adicionado ao carrinho",
+      text: "",
+      type: "success",
+    });
   }
 };
 

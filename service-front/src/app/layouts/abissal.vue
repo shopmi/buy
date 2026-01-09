@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 useHead({
   title: "Abissal | Archivist of the Obscure",
   link: [
@@ -20,7 +20,9 @@ useHead({
     class: "bg-[#050505]", // Ensure global background matches void black to avoid flashes
   },
 });
+
 const shop = useShop("abissal");
+const toast = useToast();
 </script>
 
 <template>
@@ -138,6 +140,41 @@ const shop = useShop("abissal");
         class="text-blood-red"
         size="30"
       />
+    </div>
+
+    <!-- Alerts Container -->
+    <div
+      class="fixed bottom-12 left-1/2 -translate-x-1/2 z-[11000] flex flex-col gap-4 w-full max-w-sm pointer-events-none px-4"
+    >
+      <TransitionGroup name="alert-slide">
+        <div
+          v-for="(item, index) in toast.items"
+          :key="index"
+          class="pointer-events-auto bg-[#050505] border-l-4 border-[#8a0303] p-4 shadow-[0_0_30px_rgba(138,3,3,0.15)] flex justify-between items-start gap-3 backdrop-blur-md relative overflow-hidden group"
+        >
+          <!-- Glitch Overlay -->
+          <div
+            class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          ></div>
+          <div class="flex-1">
+            <h4
+              v-if="item.title"
+              class="text-[#8a0303] font-cinzel text-sm font-bold uppercase tracking-widest mb-1"
+            >
+              {{ item.title }}
+            </h4>
+            <p class="text-gray-400 text-xs font-mono leading-relaxed">
+              {{ item.text }}
+            </p>
+          </div>
+          <button
+            @click="toast.close(item)"
+            class="text-gray-600 hover:text-white transition-colors"
+          >
+            &times;
+          </button>
+        </div>
+      </TransitionGroup>
     </div>
 
     <slot name="default"></slot>
@@ -476,5 +513,19 @@ h4 {
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(138, 3, 3, 0.8);
   border: 2px solid #050505;
+}
+
+/* Alert Transitions */
+.alert-slide-enter-active,
+.alert-slide-leave-active {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.alert-slide-enter-from {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+}
+.alert-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.95);
 }
 </style>

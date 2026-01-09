@@ -6,6 +6,8 @@ export default (storeId) => {
 
   const scope = defineStore(storeId, () => {
     const route = useRoute();
+    const toast = useToast();
+
     const importFn = modules[`/assets/data/${storeId}.js`];
     importFn().then((mod) => {
       mod = mod.default || mod;
@@ -188,6 +190,9 @@ export default (storeId) => {
             scope.cart.items.splice(index, 1);
           }
         },
+        clear() {
+          scope.cart.items = [];
+        },
         drawer: {
           show: false,
           toggle(value = null) {
@@ -201,7 +206,12 @@ export default (storeId) => {
 
       if (route.query.order_status) {
         if (route.query.order_status === "success") {
-          //
+          scope.cart.clear();
+          toast.add({
+            type: "success",
+            title: "Pedido Realizado",
+            text: "Obrigado por comprar conosco!",
+          });
         } else if (route.query.order_status === "cancel") {
           //
         }
